@@ -2,6 +2,7 @@ package com.example.NewSettler.entities;
 
 import com.example.NewSettler.Enums.UserEnum;
 import jakarta.persistence.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Entity
 public class Users {
@@ -11,6 +12,7 @@ public class Users {
     private long id;
 
     private boolean isActive;
+
 
     private String userName;
 

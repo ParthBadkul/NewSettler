@@ -21,6 +21,9 @@ public class UserDto {
         this.role = role;
     }
 
+    public UserDto() {
+    }
+
     public String getUserName() {
         return userName;
     }

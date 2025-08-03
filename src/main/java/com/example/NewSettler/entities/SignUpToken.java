@@ -15,7 +15,6 @@ public class SignUpToken {
     private String token;
 
     @OneToOne
-    @Cascade(CascadeType.ALL)
     private Users users;
 
     public SignUpToken() {

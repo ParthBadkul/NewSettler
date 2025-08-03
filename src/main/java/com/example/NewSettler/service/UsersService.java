@@ -8,6 +8,7 @@ import com.example.NewSettler.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.UUID;
 
@@ -34,11 +35,15 @@ public class UsersService {
 
         signUpTokenRepo.save(signUpToken);
 
-        return "Click to link to verify " + "http://localhost:8080/verify?token="+ signUpToken;
+        return "Click to link to verify " + "http://localhost:8080/verify?token="+ signUpToken.getToken();
     }
 
-    public void createUser() {
+    public void createUser( @Validated Users user) {
+            if(user!= null){
 
+                userRepo.save(user);
+
+            }
 
     }
 }

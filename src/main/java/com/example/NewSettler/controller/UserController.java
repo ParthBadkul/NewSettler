@@ -6,11 +6,13 @@ import com.example.NewSettler.entities.Users;
 import com.example.NewSettler.service.SignUpTokenServices;
 import com.example.NewSettler.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -19,14 +21,14 @@ public class UserController {
     private UsersService usersService;
 
     @Autowired
-    private SignUpTokenServices signUpToken;
+    private SignUpTokenServices signUpTokenServices;
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @PostMapping("/signUp")
-    public String signUp(@RequestBody  @Validated  UserDto userDto){
+    public ResponseEntity<String> signUp(@RequestBody  @Validated  UserDto userDto){
 
         if(null != userDto){
 
@@ -36,16 +38,38 @@ public class UserController {
             user1.setPassWord(bCryptPasswordEncoder.encode(userDto.getPassword()));
             user1.setActive(false);
             user1.setRole(UserEnum.CONTRIBUTOR);
+            usersService.createUser(user1);
          String signup =  usersService.generateSignUpToken(user1);
-         usersService.createUser();
+
+         System.out.println();
 
 
+        return ResponseEntity.ok(signup);
 
         }
 
 
 
-    return "Invalid Request";
+    return ResponseEntity.badRequest().build();
+
+    }
+
+    @PostMapping("/verify")
+    public  ResponseEntity<String> verify(@RequestParam String token ){
+        if(token == null){
+            return  ResponseEntity.badRequest().build();
+        }
+
+        else{
+
+           if( signUpTokenServices.verfifyToken(token)){
+               return ResponseEntity.ok("you are verifed");
+           };
+
+
+        }
+
+        return ResponseEntity.badRequest().build();
 
     }
 
