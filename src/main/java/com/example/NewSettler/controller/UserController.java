@@ -39,10 +39,7 @@ public class UserController {
             user1.setActive(false);
             user1.setRole(UserEnum.CONTRIBUTOR);
             usersService.createUser(user1);
-         String signup =  usersService.generateSignUpToken(user1);
-
-         System.out.println();
-
+            String signup =  usersService.generateSignUpToken(user1);
 
         return ResponseEntity.ok(signup);
 
