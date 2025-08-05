@@ -23,7 +23,7 @@ public class AuthConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity https) throws Exception {
 
         return https.csrf( csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST,"/signUp","/verify")
+                .authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.POST,"/signUp","/verify","/signIn")
                         .permitAll().anyRequest().authenticated()
 
                 ).build();

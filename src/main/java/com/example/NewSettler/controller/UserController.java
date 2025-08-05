@@ -6,6 +6,7 @@ import com.example.NewSettler.entities.Users;
 import com.example.NewSettler.service.SignUpTokenServices;
 import com.example.NewSettler.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -69,6 +70,35 @@ public class UserController {
         return ResponseEntity.badRequest().build();
 
     }
+
+    @PostMapping("/signIn")
+
+    public  ResponseEntity<String> signIn(@RequestBody @Validated UserDto userDto){
+
+
+        try {
+            String jwtToken = usersService.signIn(userDto);
+            return ResponseEntity.ok(jwtToken);
+        }
+        catch (IllegalArgumentException e){
+            return ResponseEntity.badRequest().body("Invalid Input");
+        }
+        catch (RuntimeException e){
+
+            return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+
+        }
+        catch (Exception e){
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("someThing went Wrong");
+        }
+
+
+
+
+    }
+
+
 
 
 }

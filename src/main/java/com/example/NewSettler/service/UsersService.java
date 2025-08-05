@@ -3,6 +3,7 @@ package com.example.NewSettler.service;
 import com.example.NewSettler.DTO.UserDto;
 import com.example.NewSettler.Repo.SignUpTokenRepo;
 import com.example.NewSettler.Repo.UserRepo;
+import com.example.NewSettler.Utils.JWTUtils;
 import com.example.NewSettler.entities.SignUpToken;
 import com.example.NewSettler.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,33 @@ public class UsersService {
                 userRepo.save(user);
 
             }
+
+    }
+
+    public String signIn(UserDto userDto) throws RuntimeException {
+
+        if(userDto == null){
+
+            throw new IllegalArgumentException("User data cannot be null");
+        }
+
+        Users user = userRepo.findByUserName(userDto.getUserName());
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
+
+
+       if( bCryptPasswordEncoder.matches(userDto.getPassword() , user.getPassWord()) && user.isActive()){
+
+           String jwts = JWTUtils.generateJWTToken(userDto);
+           return jwts;
+
+       };
+
+       throw new RuntimeException();
+
+
+
 
     }
 }
