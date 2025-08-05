@@ -63,7 +63,7 @@ public class UsersService {
 
        if( bCryptPasswordEncoder.matches(userDto.getPassword() , user.getPassWord()) && user.isActive()){
 
-           String jwts = JWTUtils.generateJWTToken(userDto);
+           String jwts = JWTUtils.generateJWTToken(user);
            return jwts;
 
        };
