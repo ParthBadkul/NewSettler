@@ -8,13 +8,16 @@ import com.example.NewSettler.Enums.UserEnum;
 import com.example.NewSettler.entities.Users;
 import com.example.NewSettler.service.SignUpTokenServices;
 import com.example.NewSettler.service.UsersService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -103,6 +106,32 @@ public class UserController {
 
 
     }
+
+    @PutMapping("/changePreference")
+    public ResponseEntity<String> changePreference(@RequestParam(required = false) @Validated Country country,
+                                                 @RequestParam(required = false) @Validated Language language,
+                                                 @RequestParam(required = false) @Validated NewsCategory newsCategory,Authentication authentication){
+
+        UserDto userDto = new UserDto();
+        userDto.setUserName(authentication.getName());
+        userDto.setCountry(country);
+        userDto.setLanguage(language);
+        userDto.setNewsCategory(newsCategory);
+
+       try {
+           usersService.updatePreference(userDto);
+           return ResponseEntity.ok("Prefernce changed ");
+       }
+       catch (Exception e){
+
+
+           return ResponseEntity.badRequest().build();
+       }
+
+
+    }
+
+
 
 
 

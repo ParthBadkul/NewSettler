@@ -34,7 +34,7 @@ public class NewsService {
 
         String language = (user.getLanguage() != null) ? user.getLanguage().toString().toLowerCase() : null;
 
-        String newsCategory = (user.getCountry() !=null) ? user.getCountry().toString() :null;
+        String newsCategory = (user.getFavnewsCategory() !=null) ? user.getFavnewsCategory().toString() :null;
 
         String apiKey = "54974791668e414ba5024b4d0950c2ec";
 

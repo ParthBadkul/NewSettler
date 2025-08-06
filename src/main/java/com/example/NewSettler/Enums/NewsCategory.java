@@ -6,6 +6,6 @@ public enum NewsCategory {
     general,
     health,
     sciences,
-    ports,
+    sports,
     technology
 }

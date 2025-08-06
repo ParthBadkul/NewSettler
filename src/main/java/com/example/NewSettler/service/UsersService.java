@@ -7,6 +7,7 @@ import com.example.NewSettler.Utils.JWTUtils;
 import com.example.NewSettler.entities.SignUpToken;
 import com.example.NewSettler.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -72,6 +73,20 @@ public class UsersService {
 
 
 
+
+    }
+
+    public void updatePreference(UserDto userDto) throws RuntimeException {
+
+       Users user = userRepo.findByUserName(userDto.getUserName());
+       if(user== null){
+           throw new  BadCredentialsException("");
+       }
+       user.setLanguage(userDto.getLanguage());
+       user.setCountry(userDto.getCountry());
+       user.setFavnewsCategory(userDto.getNewsCategory());
+
+        userRepo.save(user);
 
     }
 }
