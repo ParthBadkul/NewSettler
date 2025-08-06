@@ -25,7 +25,7 @@ public class UserController {
     private SignUpTokenServices signUpTokenServices;
 
     @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @PostMapping("/signUp")

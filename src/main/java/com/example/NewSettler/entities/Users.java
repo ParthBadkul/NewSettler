@@ -1,5 +1,8 @@
 package com.example.NewSettler.entities;
 
+import com.example.NewSettler.Enums.Country;
+import com.example.NewSettler.Enums.Language;
+import com.example.NewSettler.Enums.NewsCategory;
 import com.example.NewSettler.Enums.UserEnum;
 import jakarta.persistence.*;
 import org.hibernate.validator.constraints.UniqueElements;
@@ -20,6 +23,39 @@ public class Users {
 
     @Enumerated(EnumType.STRING)
     private UserEnum role;
+
+    @Enumerated(EnumType.STRING)
+    private Country country;
+
+    @Enumerated(EnumType.STRING)
+    private Language language;
+
+    @Enumerated(EnumType.STRING)
+    private NewsCategory favnewsCategory;
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public NewsCategory getFavnewsCategory() {
+        return favnewsCategory;
+    }
+
+    public void setFavnewsCategory(NewsCategory favnewsCategory) {
+        this.favnewsCategory = favnewsCategory;
+    }
 
     public Users() {
     }
