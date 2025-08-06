@@ -1,6 +1,9 @@
 package com.example.NewSettler.controller;
 
 import com.example.NewSettler.DTO.UserDto;
+import com.example.NewSettler.Enums.Country;
+import com.example.NewSettler.Enums.Language;
+import com.example.NewSettler.Enums.NewsCategory;
 import com.example.NewSettler.Enums.UserEnum;
 import com.example.NewSettler.entities.Users;
 import com.example.NewSettler.service.SignUpTokenServices;
@@ -39,6 +42,9 @@ public class UserController {
             user1.setPassWord(bCryptPasswordEncoder.encode(userDto.getPassword()));
             user1.setActive(false);
             user1.setRole(UserEnum.CONTRIBUTOR);
+            user1.setCountry(userDto.getCountry()!=null ? userDto.getCountry() : Country.us);
+            user1.setLanguage(userDto.getLanguage()!=null ? userDto.getLanguage() : Language.en);
+            user1.setFavnewsCategory(userDto.getNewsCategory() != null ? userDto.getNewsCategory() : NewsCategory.general);
             usersService.createUser(user1);
             String signup =  usersService.generateSignUpToken(user1);
 

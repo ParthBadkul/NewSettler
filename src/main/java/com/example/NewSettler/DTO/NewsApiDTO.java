@@ -34,7 +34,7 @@ public class NewsApiDTO {
         }
     }
 
-    // Getters and setters for outer class
+
     public Source getSource() {
         return source;
     }

@@ -4,6 +4,7 @@ import com.example.NewSettler.Enums.Country;
 import com.example.NewSettler.Enums.Language;
 import com.example.NewSettler.Enums.NewsCategory;
 import com.example.NewSettler.Enums.UserEnum;
+import com.example.NewSettler.customValidators.ValidEnum;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
@@ -16,12 +17,16 @@ public class UserDto {
     @NotBlank(message = "Password Cant Be Null")
     private String password;
 
+    @ValidEnum(enumClass = UserEnum.class)
     private UserEnum role;
 
+    @ValidEnum(enumClass = Country.class , message = "We do not support country code you provided")
     private Country country;
 
+    @ValidEnum(enumClass = Language.class)
     private Language language;
 
+    @ValidEnum(enumClass = NewsCategory.class)
     private NewsCategory newsCategory;
 
     public UserDto(String userName, String password, UserEnum role) {
