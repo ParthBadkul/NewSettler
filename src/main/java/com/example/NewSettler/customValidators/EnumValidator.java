@@ -2,10 +2,6 @@ package com.example.NewSettler.customValidators;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-import org.springframework.stereotype.Component;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 

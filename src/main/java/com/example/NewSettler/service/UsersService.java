@@ -41,6 +41,13 @@ public class UsersService {
     }
 
     public void createUser( @Validated Users user) {
+
+            if(userRepo.findByUserName(user.getUserName()) != null){
+
+                return;
+
+            }
+
             if(user!= null){
 
                 userRepo.save(user);

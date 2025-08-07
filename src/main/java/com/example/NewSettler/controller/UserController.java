@@ -12,6 +12,7 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -64,7 +65,7 @@ public class UserController {
     @PostMapping("/verify")
     public  ResponseEntity<String> verify(@RequestParam String token ){
         if(token == null){
-            return  ResponseEntity.badRequest().build();
+            return  ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
         else{
