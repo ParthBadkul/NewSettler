@@ -35,7 +35,7 @@ public class AuthConfig {
                         auth
                                 .requestMatchers(HttpMethod.POST, "/signUp","/verify","/signIn")
                                 .permitAll()
-                                .requestMatchers(HttpMethod.GET,"/news").authenticated()
+                                .requestMatchers("/news/**").authenticated()
                                 .anyRequest()
                                 .authenticated()
 

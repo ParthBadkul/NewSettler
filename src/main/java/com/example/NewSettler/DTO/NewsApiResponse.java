@@ -32,6 +32,10 @@ public class NewsApiResponse {
         this.articles = articles;
     }
 
+    public String size() {
+        return "${articles.size()}";
+    }
+
     // Getters and Setters
     }
 
