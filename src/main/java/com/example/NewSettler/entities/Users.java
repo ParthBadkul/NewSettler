@@ -21,6 +21,10 @@ public class Users {
 
     private String passWord;
 
+    private String firstName;
+
+    private String lastName;
+
     @Enumerated(EnumType.STRING)
     private UserEnum role;
 
@@ -32,6 +36,22 @@ public class Users {
 
     @Enumerated(EnumType.STRING)
     private NewsCategory favnewsCategory;
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public Country getCountry() {
         return country;

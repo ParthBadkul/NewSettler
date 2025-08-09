@@ -16,7 +16,7 @@ public class EnumValidator implements ConstraintValidator<ValidEnum ,Enum<?>> {
 
     @Override
     public boolean isValid(Enum<?> s, ConstraintValidatorContext constraintValidatorContext) {
-       if(s == null) return true;
+       if(s == null || s.equals("")) return true;
 
        return Arrays.stream(enumClass.getEnumConstants()).anyMatch(e -> e.name().equalsIgnoreCase(s.name()));
 

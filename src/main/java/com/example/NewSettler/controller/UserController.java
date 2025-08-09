@@ -44,6 +44,8 @@ public class UserController {
             user1.setPassWord(bCryptPasswordEncoder.encode(userDto.getPassword()));
             user1.setActive(false);
             user1.setRole(UserEnum.CONTRIBUTOR);
+            user1.setFirstName(userDto.getFirstName());
+            user1.setLastName(userDto.getLastName());
             user1.setCountry(userDto.getCountry()!=null ? userDto.getCountry() : Country.us);
             user1.setLanguage(userDto.getLanguage()!=null ? userDto.getLanguage() : Language.en);
             user1.setFavnewsCategory(userDto.getNewsCategory() != null ? userDto.getNewsCategory() : NewsCategory.general);

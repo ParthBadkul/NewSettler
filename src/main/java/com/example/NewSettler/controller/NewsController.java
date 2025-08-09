@@ -21,7 +21,7 @@ public class NewsController {
     @Autowired
     private NewsService newsService;
 
-    @GetMapping("/articles")
+    @GetMapping("/articlesSync")
     @PreAuthorize("hasRole('CONTRIBUTOR')")
     public Mono<NewsApiResponse> getNewsChannelOfMyRole(Authentication authentication){ // I am using Auth object because I am already sending claims in the auth object so why to you use db again
 
@@ -32,7 +32,7 @@ public class NewsController {
     }
 
 
-    @GetMapping("/articlessync")
+    @GetMapping("/articles")
     @PreAuthorize("hasRole('CONTRIBUTOR')")
     public List<NewsApiDTO> getNewsChannelOfMyRoleShnc(Authentication authentication){ // I am using Auth object because I am already sending claims in the auth object so why to you use db again
 

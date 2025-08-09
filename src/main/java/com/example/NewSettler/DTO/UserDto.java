@@ -17,6 +17,10 @@ public class UserDto {
     @NotBlank(message = "Password Cant Be Null")
     private String password;
 
+    private String firstName;
+
+    private String lastName;
+
     @ValidEnum(enumClass = UserEnum.class)
     private UserEnum role;
 
@@ -45,6 +49,22 @@ public class UserDto {
         this.country = country;
         this.language = language;
         this.newsCategory = newsCategory;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Country getCountry() {

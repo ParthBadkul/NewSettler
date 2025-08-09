@@ -25,6 +25,11 @@ public class JWTfilter extends OncePerRequestFilter {
         String token;
         String path = request.getServletPath();
 
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
 
         if (path.equals("/signIn") || path.equals("/signUp") || path.equals("/verify")) {
             filterChain.doFilter(request, response);
